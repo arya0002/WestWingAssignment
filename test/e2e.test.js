@@ -20,7 +20,7 @@ describe('Wishlist page delete E2E feature test',function(){
         browser.url('/');
         browser.maximizeWindow();
         const title = elementUtil.doGetTitle();
-        expect(homePage.getPageTitle()).equals(configData.homePageTitle)
+        expect(elementUtil.doGetTitle()).equals(configData.homePageTitle)
         console.log('login page title is: ', title);
         homePage.acceptCookiesNotification();
         topBar.doSearch(searchProduct);
