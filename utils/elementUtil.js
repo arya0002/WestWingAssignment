@@ -1,7 +1,7 @@
 class ElementUtil{
 
     doWait(time) {
-		browser.Pause(time)
+		browser.pause(time)
 	}
 
     doNavToURL(url)

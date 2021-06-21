@@ -143,8 +143,8 @@ exports.config = {
     reporters: ['spec',
     ['allure', {
         outputDir: 'allure-results',
-        disableWebdriverStepsReporting:true,
-        disableWebdriverScreenshotsReporting:true
+        disableWebdriverStepsReporting:false,
+        disableWebdriverScreenshotsReporting:false
     }]],
 
 
@@ -245,9 +245,9 @@ exports.config = {
      * Function to be executed after a test (in Mocha/Jasmine).
      */
     afterTest: function(test, context, { error, result, duration, passed, retries }) {
-        if (!passed) {
-            browser.takeScreenshot();
-        }
+        
+        browser.takeScreenshot();
+        
     },
 
 

@@ -14,6 +14,7 @@ let currentWishlistCount = null
 
 
 describe('Wishlist page delete E2E feature test',function(){
+
   e2eTestData.forEach(({emailID,password,firstName,searchProduct,homePageTitle})=>{
 
     it('Navigate to homepage and search product', function(){
@@ -67,20 +68,21 @@ describe('Wishlist page delete E2E feature test',function(){
 
     it('Verify the wishlist counter is showing the correct number', function(){
       //Check the wishlist counter after wishlisting the product, it should be increased by 1
-      expect(parseInt(currentWishlistCount)+1 == parseInt(topBar.getCurrentWishListCount()),'Wishlist number is not correct',topBar.getCurrentWishListCount());
+      assert.equal(parseInt(currentWishlistCount)+1,parseInt(topBar.getCurrentWishListCount()),'Wishlist number is not correct '+ topBar.getCurrentWishListCount())
 
     })
 
     it('Navigate to wishlist page', function(){
       wishlistPage.navToWishList(configData.basURL+configData.wishlistURL);
-      expect(wishlistPage.isWishlistPageLoaded(),"Wishlist page not found");
+      assert.isTrue(wishlistPage.isWishlistPageLoaded(),"Wishlist page not found")
       console.log('Navigated to Wishlist page');
       
     })
 
     it('Delete the wishlisted product', function(){
       wishlistPage.doDeleteProductFromWishlist(productName);
-      expect(wishlistPage.wishListProductDeletebtn(productName).isDisplayed(),"Product is not deleted from wishlist")
+      elementUtil.doWait(2000);
+      assert.isFalse(wishlistPage.wishListProductDeletebtn(productName).isDisplayed(),"Product is not deleted")
       console.log('Product Deleted');
     })
   })
