@@ -1,5 +1,6 @@
 FROM node:14.15.3-buster
 
+#INSTAKK JDK
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y default-jre-headless locales
 RUN sed -i -e 's/# \(en_US\.UTF-8 .*\)/\1/' /etc/locale.gen && \
@@ -68,7 +69,7 @@ RUN google-chrome --version
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 # INSTALL PACKAGES
-WORKDIR /usr/wdiowithoutgrid/
+WORKDIR /usr/westwing/
 COPY package*.json ./
 COPY . .
 EXPOSE 8080
