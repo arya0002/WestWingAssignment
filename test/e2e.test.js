@@ -2,26 +2,25 @@ const { assert, expect } = require('chai')
 
 const loginPage = require('../pages/login.page')
 const homePage = require('../pages/home.page')
-const configData = require('../resources/config')
+const configData = require('../config')
 const wishlistPage = require('../pages/wishlist.page')
 const topBar = require('../pages/topbar')
 const elementUtil = require('../utils/elementUtil')
 const fs = require('fs')
-let e2eTestData = JSON.parse(fs.readFileSync('resources\\testdata\\DeleteFromWishlist.json'))
+let e2eTestData = JSON.parse(fs.readFileSync('resources/testdata/DeleteFromWishlist.json'))
 let productName= null
 let searchProductCount =null
 let currentWishlistCount = null
 
 
 describe('Wishlist page delete E2E feature test',function(){
-  e2eTestData.forEach(({emailID,password,firstName,searchProduct})=>{
+  e2eTestData.forEach(({emailID,password,firstName,searchProduct,homePageTitle})=>{
 
     it('Navigate to homepage and search product', function(){
         browser.url('/');
         browser.maximizeWindow();
-        const title = elementUtil.doGetTitle();
-        expect(elementUtil.doGetTitle()).equals(configData.homePageTitle)
-        console.log('login page title is: ', title);
+        expect(elementUtil.doGetTitle()).equals(homePageTitle)
+        console.log('login page title is: ', elementUtil.doGetTitle());
         homePage.acceptCookiesNotification();
         topBar.doSearch(searchProduct);
         topBar.doSearch("Enter");
